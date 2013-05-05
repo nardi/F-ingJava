@@ -38,8 +38,8 @@ public class Examples
         Log.i("getIP", "Retrieving your public IP address from http://icanhazip.com");
 
         /*
-         * Synchronously: on newer versions of Android this will throw a
-         * NetworkOnMainThreadException ...and it will freeze the UI regardless.
+         * Synchronously: on newer versions of Android this will throw a NetworkOnMainThreadException
+         * ...and it will freeze the UI regardless.
          */
         try
         {
@@ -73,8 +73,7 @@ public class Examples
         });
     }
 
-    // Note: variables and methods can share the same name, so you can create
-    // method wrappers for Functions:
+    // Note: variables and methods can share the same name, so you can create method wrappers for Functions:
     static String retrieveWebpage(String url) throws Exception
     {
         return retrieveWebpage.call(url);
@@ -89,7 +88,7 @@ public class Examples
      * If you need more flexibility in arguments, the easiest solution is
      * probably to use a closure method: a method that creates an argumentless
      * Function (called a Procedure) which can use the method's arguments in
-     * it's code.
+     * its code.
      */
     static Procedure<String[]> retrieveWebpages(final String... urls)
     {
