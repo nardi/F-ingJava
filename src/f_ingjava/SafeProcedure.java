@@ -2,7 +2,7 @@ package f_ingjava;
 
 public abstract class SafeProcedure<ResultType> extends SafeFunction<Void, ResultType>
 {
-    public abstract ResultType call();
+	public abstract ResultType call();
 
     @Override
     public final ResultType call(Void arg)
@@ -10,7 +10,7 @@ public abstract class SafeProcedure<ResultType> extends SafeFunction<Void, Resul
         return this.call();
     }
 
-    public final SafeProcedure<ResultType> callAsync(SafeCallback<ResultType> cb)
+    public final SafeProcedure<ResultType> callAsync(SafeCallback<? super ResultType> cb)
     {
         this.callAsync(null, cb);
         return this;

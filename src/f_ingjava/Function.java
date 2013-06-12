@@ -5,9 +5,9 @@ import android.os.Build;
 
 public abstract class Function<ArgumentType, ResultType>
 {
-    public abstract ResultType call(ArgumentType arg) throws Exception;
+	public abstract ResultType call(ArgumentType arg) throws Exception;
 
-    public final Function<ArgumentType, ResultType> callAsync(ArgumentType arg, Callback<ResultType> cb)
+    public final Function<ArgumentType, ResultType> callAsync(ArgumentType arg, Callback<? super ResultType> cb)
     {
         if (cb == null)
             throw new NullPointerException("Callback may not be null");
@@ -15,7 +15,7 @@ public abstract class Function<ArgumentType, ResultType>
         return this;
     }
 
-    protected final void executeAsyncCaller(ArgumentType arg, Callback<ResultType> cb)
+    protected final void executeAsyncCaller(ArgumentType arg, Callback<? super ResultType> cb)
     {
         AsyncCaller ac = new AsyncCaller(this, arg, cb);
         if (Build.VERSION.SDK_INT >= 11)
@@ -28,9 +28,10 @@ public abstract class Function<ArgumentType, ResultType>
     {
         private final Function<ArgumentType, ResultType> function;
         private final ArgumentType arg;
-        private final Callback<ResultType> cb;
+        private final Callback<? super ResultType> cb;
 
-        public AsyncCaller(Function<ArgumentType, ResultType> function, ArgumentType arg, Callback<ResultType> cb)
+        public AsyncCaller(Function<ArgumentType, ResultType> function, ArgumentType arg,
+        		Callback<? super ResultType> cb)
         {
             this.function = function;
             this.arg = arg;

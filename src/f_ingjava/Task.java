@@ -2,7 +2,7 @@ package f_ingjava;
 
 public abstract class Task extends Function<Void, Void>
 {
-    public abstract void call() throws Exception;
+	public abstract void call() throws Exception;
 
     @Override
     public final Void call(Void arg) throws Exception
@@ -11,7 +11,7 @@ public abstract class Task extends Function<Void, Void>
         return null;
     }
 
-    public final Task callAsync(Callback<Void> cb)
+    public final Task callAsync(Callback<? super Void> cb)
     {
         this.callAsync(null, cb);
         return this;
